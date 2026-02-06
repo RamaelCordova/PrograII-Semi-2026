@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">miPrimerProyecto</string>
+    <string name="respuesta">Respuesta: ?</string>
+    <string name="escriba_un_numero">Escriba un numero</string>
+    <string name="num_2">Num 2:</string>
+    <string name="escribe_un_numero">Escribe un numero</string>
+    <string name="calcular">CALCULAR</string>
+    <string name="num_1">NUM 1:</string>
+    <string name="Respuesta">Respuesta: ?</string>
 </resources>
