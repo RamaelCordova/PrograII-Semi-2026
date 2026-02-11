@@ -62,6 +62,46 @@
         app:layout_constraintTop_toBottomOf="@+id/lblNum2"
         app:layout_constraintVertical_bias="0.177" />
 
+    <RadioGroup
+        android:id="@+id/optOpciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/btnCalcular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNum2"
+        app:layout_constraintVertical_bias="0.483">
+
+        <RadioButton
+            android:id="@+id/optSuma"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SUMA" />
+
+        <RadioButton
+            android:id="@+id/optResta"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESTAR" />
+
+        <RadioButton
+            android:id="@+id/optMultiplicar"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MULTIPLICACION" />
+
+        <RadioButton
+            android:id="@+id/optDividir"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DIVISION" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/btnCalcular"
         android:layout_width="match_parent"
@@ -69,6 +109,5 @@
         android:text="@string/calcular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNum2"
-        app:layout_constraintVertical_bias="0.218"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
