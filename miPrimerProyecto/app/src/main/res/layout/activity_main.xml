@@ -80,6 +80,7 @@
             android:layout_height="wrap_content"
             android:text="SUMA" />
 
+
         <RadioButton
             android:id="@+id/optResta"
             android:checked="true"
