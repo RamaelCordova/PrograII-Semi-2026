@@ -1,49 +1,68 @@
 package com.example.miprimerproyecto;
 
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.os.Bundle;import android.widget.Button;
+import android.widget.EditText; // Cambiado a EditText para capturar datos
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast; // Para mostrar errores
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-     TextView tempVal;
-     Button btn;
-     RadioGroup radioGroup;
-     RadioButton opt;
+    // Declaramos las variables de los controles
+    EditText txtNum1, txtNum2;
+    Button btn;
+    Spinner spn;
+    TextView lblRespuesta;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Inicializamos los controles una sola vez aquí
+        txtNum1 = findViewById(R.id.txtNum1);
+        txtNum2 = findViewById(R.id.txtNum2);
         btn = findViewById(R.id.btnCalcular);
-        btn.setOnClickListener(v->calcular());
+        spn = findViewById(R.id.cboOpciones);
+        lblRespuesta = findViewById(R.id.lblRespuesta);
+
+        btn.setOnClickListener(v -> calcular());
     }
-    private void calcular(){
-        tempVal = findViewById(R.id.txtNum1);
-        Double num1 = Double.parseDouble(tempVal.getText().toString());
 
-        tempVal = findViewById(R.id.txtNum2);
-        Double num2 = Double.parseDouble(tempVal.getText().toString());
+    private void calcular() {
+        try {
+            // Obtenemos los valores de los cuadros de texto
+            double num1 = Double.parseDouble(txtNum1.getText().toString());
+            double num2 = Double.parseDouble(txtNum2.getText().toString());
+            double respuesta = 0;
 
-        double respuesta = 0;
+            // Evaluamos la opción seleccionada en el Spinner
+            switch (spn.getSelectedItemPosition()) {
+                case 0: // Suma
+                    respuesta = num1 + num2;
+                    break;
+                case 1: // Resta
+                    respuesta = num1 - num2;
+                    break;
+                case 2: // Multiplicacion
+                    respuesta = num1 * num2;
+                    break;
+                case 3: // Division
+                    if (num2 != 0) {
+                        respuesta = num1 / num2;
+                    } else {
+                        lblRespuesta.setText("Error: Div entre 0");
+                        return;
+                    }
+                    break;
+            }
+            // Mostramos el resultado
+            lblRespuesta.setText("Respuesta: " + respuesta);
 
-        radioGroup = findViewById(R.id.optOpciones);
-        if(radioGroup.getCheckedRadioButtonId()==R.id.optSuma) {
-            respuesta = num1 + num2;
+        } catch (Exception e) {
+            // Si el usuario dejó un campo vacío, mostramos un mensaje en lugar de cerrar la App
+            Toast.makeText(this, "Por favor, ingrese números válidos", Toast.LENGTH_SHORT).show();
         }
-        if(radioGroup.getCheckedRadioButtonId()==R.id.optResta) {
-            respuesta = num1 - num2;
-        }
-        if(radioGroup.getCheckedRadioButtonId()==R.id.optMultiplicar) {
-            respuesta = num1 * num2;
-        }
-        if(radioGroup.getCheckedRadioButtonId()==R.id.optDividir) {
-            respuesta = num1 / num2;
-        }
-        tempVal = findViewById(R.id.lblRespuesta);
-        tempVal.setText("Respuesta: "+ respuesta);
     }
 }

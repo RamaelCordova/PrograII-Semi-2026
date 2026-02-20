@@ -11,20 +11,21 @@
         android:id="@+id/lblNum1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/num_1"
+        android:text="Num 1:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <EditText
         android:id="@+id/txtNum1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:hint="@string/escriba_un_numero"
+        android:hint="Escribe un numero"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="85dp" />
 
@@ -32,19 +33,19 @@
         android:id="@+id/lblNum2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="344dp"
-        android:text="@string/num_2"
+        android:text="NUm 2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblNum1"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintVertical_bias="0.176" />
 
     <EditText
         android:id="@+id/txtNum2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="@string/escribe_un_numero"
+        android:hint="Escribe un numero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNum1"
         app:layout_constraintVertical_bias="0.109"
@@ -54,62 +55,31 @@
         android:id="@+id/lblRespuesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Respuesta"
+        android:text="Respuesta: ?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblNum2"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.124" />
 
-    <RadioGroup
-        android:id="@+id/optOpciones"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/cboOpciones"
+        android:entries="@array/opciones"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btnCalcular"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.894"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNum2"
-        app:layout_constraintVertical_bias="0.483">
-
-        <RadioButton
-            android:id="@+id/optSuma"
-            android:checked="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SUMA" />
-
-
-        <RadioButton
-            android:id="@+id/optResta"
-            android:checked="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RESTAR" />
-
-        <RadioButton
-            android:id="@+id/optMultiplicar"
-            android:checked="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MULTIPLICACION" />
-
-        <RadioButton
-            android:id="@+id/optDividir"
-            android:checked="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DIVISION" />
-    </RadioGroup>
+        app:layout_constraintVertical_bias="0.496"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/btnCalcular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/calcular"
+        android:text="Calcular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNum2"
-        app:layout_constraintVertical_bias="0.552"
+        app:layout_constraintVertical_bias="0.316"
         tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
