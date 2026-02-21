@@ -17,17 +17,17 @@
         app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.068" />
 
     <EditText
         android:id="@+id/txtNum1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
         android:hint="Escribe un numero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="85dp" />
+        app:layout_constraintVertical_bias="0.12"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/lblNum2"
@@ -36,9 +36,10 @@
         android:text="NUm 2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblNum1"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.147" />
 
     <EditText
         android:id="@+id/txtNum2"
@@ -48,8 +49,8 @@
         android:hint="Escribe un numero"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNum1"
-        app:layout_constraintVertical_bias="0.109"
-        tools:layout_editor_absoluteX="109dp" />
+        app:layout_constraintVertical_bias="0.09"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/lblRespuesta"
@@ -58,20 +59,20 @@
         android:text="Respuesta: ?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblNum2"
-        app:layout_constraintVertical_bias="0.124" />
+        app:layout_constraintVertical_bias="0.272" />
 
     <Spinner
         android:id="@+id/cboOpciones"
-        android:entries="@array/opciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:entries="@array/opciones"
         app:layout_constraintBottom_toTopOf="@+id/btnCalcular"
         app:layout_constraintTop_toBottomOf="@+id/txtNum2"
-        app:layout_constraintVertical_bias="0.496"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintVertical_bias="0.436"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btnCalcular"
@@ -80,6 +81,6 @@
         android:text="Calcular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNum2"
-        app:layout_constraintVertical_bias="0.316"
+        app:layout_constraintVertical_bias="0.264"
         tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
