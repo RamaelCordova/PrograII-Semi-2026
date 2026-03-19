@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="areas">
+        <item>Pie cuadrado (ft²)</item>
+        <item>Vara cuadrada</item>
+        <item>Yarda cuadrada (yd²)</item>
+        <item>Metro cuadrado (m²)</item>
+        <item>Tareas</item>
+        <item>Manzana</item>
+        <item>Hectárea (ha)</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Parcial_I</string>
+    <style name="Base.Theme.Parcial_I" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.Parcial_I" parent="Base.Theme.Parcial_I"/>
+</resources>

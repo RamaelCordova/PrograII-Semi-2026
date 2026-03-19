@@ -1,68 +1,85 @@
 package com.example.miprimerproyecto;
 
-import android.os.Bundle;import android.widget.Button;
-import android.widget.EditText; // Cambiado a EditText para capturar datos
-import android.widget.Spinner;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast; // Para mostrar errores
 
 import androidx.appcompat.app.AppCompatActivity;
 
+// Import correcto basado en el namespace del build.gradle
+import com.example.miprimerproyecto.R;
+
 public class MainActivity extends AppCompatActivity {
-    // Declaramos las variables de los controles
-    EditText txtNum1, txtNum2;
-    Button btn;
-    Spinner spn;
-    TextView lblRespuesta;
+    TextView tempVal;
+    SensorManager sensorManager;
+    Sensor sensor;
+    SensorEventListener sensorEventListener;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // Inicializamos los controles una sola vez aquí
-        txtNum1 = findViewById(R.id.txtNum1);
-        txtNum2 = findViewById(R.id.txtNum2);
-        btn = findViewById(R.id.btnCalcular);
-        spn = findViewById(R.id.cboOpciones);
-        lblRespuesta = findViewById(R.id.lblRespuesta);
-
-        btn.setOnClickListener(v -> calcular());
+    protected void onPause() {
+        detener();
+        super.onPause();
     }
 
-    private void calcular() {
-        try {
-            // Obtenemos los valores de los cuadros de texto
-            double num1 = Double.parseDouble(txtNum1.getText().toString());
-            double num2 = Double.parseDouble(txtNum2.getText().toString());
-            double respuesta = 0;
+    @Override
+    protected void onResume() {
+        iniciar();
+        super.onResume();
+    }
 
-            // Evaluamos la opción seleccionada en el Spinner
-            switch (spn.getSelectedItemPosition()) {
-                case 0: // Suma
-                    respuesta = num1 + num2;
-                    break;
-                case 1: // Resta
-                    respuesta = num1 - num2;
-                    break;
-                case 2: // Multiplicacion
-                    respuesta = num1 * num2;
-                    break;
-                case 3: // Division
-                    if (num2 != 0) {
-                        respuesta = num1 / num2;
-                    } else {
-                        lblRespuesta.setText("Error: Div entre 0");
-                        return;
-                    }
-                    break;
-            }
-            // Mostramos el resultado
-            lblRespuesta.setText("Respuesta: " + respuesta);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        sensorProximidad();
+    }
 
-        } catch (Exception e) {
-            // Si el usuario dejó un campo vacío, mostramos un mensaje en lugar de cerrar la App
-            Toast.makeText(this, "Por favor, ingrese números válidos", Toast.LENGTH_SHORT).show();
+    private void iniciar() {
+        if (sensorManager != null && sensorEventListener != null && sensor != null) {
+            sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
+    }
+
+    private void detener() {
+        if (sensorManager != null && sensorEventListener != null) {
+            sensorManager.unregisterListener(sensorEventListener);
+        }
+    }
+
+    private void sensorProximidad() {
+        tempVal = findViewById(R.id.lblSensorProximidad);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+        if (sensor == null) {
+            if (tempVal != null) {
+                tempVal.setText("No dispones del sensor de proximidad");
+            }
+            return;
+        }
+
+        sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                double valor = sensorEvent.values[0];
+                if (tempVal != null) {
+                    tempVal.setText("Proximidad: " + valor);
+                }
+                
+                int color = Color.BLACK;
+                if (valor <= 4) {
+                    color = Color.WHITE;
+                }
+                getWindow().getDecorView().setBackgroundColor(color);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
     }
 }
