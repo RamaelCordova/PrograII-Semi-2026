@@ -6,12 +6,17 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-
-// Import correcto basado en el namespace del build.gradle
-import com.example.miprimerproyecto.R;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     TextView tempVal;
@@ -35,53 +40,43 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sensorProximidad();
+        sensorLuz();
     }
-
-    private void iniciar() {
-        if (sensorManager != null && sensorEventListener != null && sensor != null) {
-            sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
+    private void iniciar(){
+        sensorManager.registerListener(sensorEventListener, sensor, 2000*1000);
     }
-
-    private void detener() {
-        if (sensorManager != null && sensorEventListener != null) {
-            sensorManager.unregisterListener(sensorEventListener);
-        }
+    private void detener(){
+        sensorManager.unregisterListener(sensorEventListener);
     }
-
-    private void sensorProximidad() {
-        tempVal = findViewById(R.id.lblSensorProximidad);
+    private void sensorLuz(){
+        tempVal = findViewById(R.id.lblSensorLuz);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-
-        if (sensor == null) {
-            if (tempVal != null) {
-                tempVal.setText("No dispones del sensor de proximidad");
-            }
-            return;
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if(sensor==null){
+            tempVal.setText("No dispones del sensor de Luz");
+            finish();
         }
-
         sensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 double valor = sensorEvent.values[0];
-                if (tempVal != null) {
-                    tempVal.setText("Proximidad: " + valor);
-                }
-
+                tempVal.setText("Luz: "+ valor);
                 int color = Color.BLACK;
-                if (valor <= 4) {
-                    color = Color.WHITE;
+                if(valor>=0 && valor<=50){
+                    color = Color.GRAY;
+                }
+                if(valor>=51 && valor<=100){
+                    color = Color.YELLOW;
+                }
+                if (valor>=101 && valor<1000){
+                    color = Color.BLUE;
                 }
                 getWindow().getDecorView().setBackgroundColor(color);
             }
-
             @Override
             public void onAccuracyChanged(Sensor sensor, int i) {
+
             }
-
-
         };
     }
 }
