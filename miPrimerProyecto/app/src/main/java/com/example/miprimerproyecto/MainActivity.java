@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tempVal != null) {
                     tempVal.setText("Proximidad: " + valor);
                 }
-                
+
                 int color = Color.BLACK;
                 if (valor <= 4) {
                     color = Color.WHITE;
